@@ -617,6 +617,9 @@ function affichageDansTerrain(position, playersposition) {
 
 
 }
+function remplacer(){
+
+}
 
 function hello(position) {
     position.classList.remove('hidden');
