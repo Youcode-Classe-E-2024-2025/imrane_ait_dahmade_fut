@@ -290,340 +290,138 @@ let players = [
 
 
 ];
-console.log(players.length)
-let playersGK = players.filter(({ position }) => position === "GK");
-let playersLB = players.filter(({ position }) => position === "LB");
-let playersRB = players.filter(({ position }) => position === "RB");
-let playersCB = players.filter(({ position }) => position === "CB");
-let playersCM = players.filter(({ position }) => position === "CM");
-let playersST = players.filter(({ position }) => position === "ST");
-let playersRW = players.filter(({ position }) => position === "RW");
-let playersLW = players.filter(({ position }) => position === "LW");
-
-const boxafichage = document.getElementById('PlaceAffichageToutPlayers');
-
-function affichage(playerst) {
-    // Vider l'affichage avant de recréer la liste
-    boxafichage.innerHTML = '';
-
-    playerst.forEach((plr, index) => {
-        let box = document.createElement('div');
-        box.classList = "bg-white p-4 rounded-lg shadow text-center space-y-2";
-
-        // Add data-index to buttons for later use
-        if (plr.position == "GK") {
-            box.innerHTML = `
-            <img src="${plr.photo}" alt="${plr.name}" class="rounded-lg">
-            <h3 class="text-xl font-semibold">${plr.name}</h3>
-            <p class="text-sm text-gray-600">${plr.position}</p>
-            <p class="text-sm text-gray-600">${plr.club}</p>
-            <p class="font-bold text-lg">${plr.rating}</p>
-            <div class="flex flex-col">
-                <div class="flex flex-row justify-between gap-3">
-                    <div class="flex flex-col">
-                        <span>PAC</span>
-                        <span>${plr.diving}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>SHO</span>
-                        <span>${plr.handling}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PAS</span>
-                        <span>${plr.kicking}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DRI</span>
-                        <span>${plr.speed}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DEF</span>
-                        <span>${plr.positioning}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PHY</span>
-                        <span>${plr.reflexes}</span>
-                    </div>
-                </div>
-                <div class="flex flex-row gap-2 justify-center items-center mt-2">
-                    <img src="${plr.flag}" class="w-10 h-7" alt="Flag of ${plr.nationality}">
-                    <img src="${plr.logo}" class="w-10 h-10" alt="${plr.flag}">
-                </div>
-            </div>
-            <div class="flex space-x-2 justify-center mt-4">
-                <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" data-index="${index}">
-                    Modifier
-                </button>
-                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" data-index="${index}">
-                    Supprimer
-                </button>
-            </div>
-            `;
-        } else {
-            box.innerHTML = `
-            <img src="${plr.photo}" alt="${plr.name}" class="rounded-lg">
-            <h3 class="text-xl font-semibold">${plr.name}</h3>
-            <p class="text-sm text-gray-600">${plr.position}</p>
-            <p class="text-sm text-gray-600">${plr.club}</p>
-            <p class="font-bold text-lg">${plr.rating}</p>
-            <div class="flex flex-col">
-                <div class="flex flex-row justify-between gap-3">
-                    <div class="flex flex-col">
-                        <span>PAC</span>
-                        <span>${plr.pace}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>SHO</span>
-                        <span>${plr.shooting}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PAS</span>
-                        <span>${plr.passing}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DRI</span>
-                        <span>${plr.dribbling}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>DEF</span>
-                        <span>${plr.defending}</span>
-                    </div>
-                    <div class="flex flex-col">
-                        <span>PHY</span>
-                        <span>${plr.physical}</span>
-                    </div>
-                </div>
-                <div class="flex flex-row gap-2 justify-center items-center mt-2">
-                    <img src="${plr.flag}" class="w-10 h-7" alt="Flag of ${plr.nationality}">
-                    <img src="https://via.placeholder.com/50" class="w-10 h-10" alt="${plr.club}">
-                </div>
-            </div>
-            <div class="flex space-x-2 justify-center mt-4">
-                <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" data-index="${index}">
-                    Modifier
-                </button>
-                <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" data-index="${index}">
-                    Supprimer
-                </button>
-            </div>
-            `;
-        }
-
-        boxafichage.appendChild(box);
-    });
-
-    // Event delegation for the dynamically created buttons
-    boxafichage.addEventListener('click', function (event) {
-        // Check if the clicked element is a 'Modifier' button
-        if (event.target && event.target.matches('button.bg-yellow-500')) {
-            const index = event.target.dataset.index;
-            editPlayer(index);
-        }
-
-        // Check if the clicked element is a 'Supprimer' button
-        if (event.target && event.target.matches('button.bg-red-500')) {
-            const index = event.target.dataset.index;
-            deletePlayer(index);
-        }
-    });
-
-    function deletePlayer(index) {
-        // Supprimer le joueur de la liste
-        playerst.splice(index, 1);
-    
-        // Mettre à jour l'affichage
-        affichage(playerst);
-    }
-
-    function editPlayer(index) {
-        // Your logic to edit player goes here
-        console.log("Editing player at index: " + index);
-    }
-}
-
-
-affichage(players);
-document.getElementById('addJoueur').addEventListener('click', (e) => {
-    // e.preventDefault();
-    const nameplayer = document.getElementById('name').value.trim();
-    const positionplayer = document.getElementById('position').value.trim();
-    const nationalityplayer = document.getElementById('nationality').value.trim();
-    const clubplayer = document.getElementById('club').value.trim();
-    const ratingplayer = parseInt(document.getElementById('rating').value.trim());
-    const paceplayer = parseInt(document.getElementById('pace').value.trim());
-    const shootingplayer = parseInt(document.getElementById('shooting').value.trim());
-    const passingplayer = parseInt(document.getElementById('passing').value.trim());
-    const dribblingplayer = parseInt(document.getElementById('dribbling').value.trim());
-    const defendingplayer = parseInt(document.getElementById('defending').value.trim());
-    const physicalplayer = parseInt(document.getElementById('physical').value.trim());
-    const photoplayer = document.getElementById('photo').value.trim();
-
-    // Création de l'objet joueur
-    let player = {
-        name: nameplayer,
-        position: positionplayer,
-        nationality: nationalityplayer,
-        club: clubplayer,
-        rating: ratingplayer,
-        pace: paceplayer,
-        shooting: shootingplayer,
-        passing: passingplayer,
-        dribbling: dribblingplayer,
-        defending: defendingplayer,
-        physical: physicalplayer,
-        photo: photoplayer,
-    };
-    players.push(player);
-    affichage(players);
-
-    // affichageDansTerrain(ST,playersST);
-})
-const LW = document.getElementById('LW');
-const ST = document.getElementById('ST');
-const RW = document.getElementById('RW');
-const CM1 = document.getElementById('CM1');
-const CM2 = document.getElementById('CM2');
-const CM3 = document.getElementById('CM3');
-const LB = document.getElementById('LB');
-const CB1 = document.getElementById('CB1');
-const CB2 = document.getElementById('CB2');
-const RB = document.getElementById('RB');
-const GK = document.getElementById('GK');
-
-function affichageDansTerrain(position, playersposition) {
-    const partie = document.getElementById('partie');
-
-    // Affiche ou masque le conteneur
-    partie.classList.toggle('hidden');
-
-    // Nettoie le contenu existant
-    partie.innerHTML = '';
 
 
 
-    // Affiche les joueurs filtrés
-    playersposition.forEach((plr, index) => {
-        let box = document.createElement('div');
-        box.classList = "bg-white p-4 rounded-lg shadow text-center space-y-2";
-        if (plr.position == "GK") {
-            box.innerHTML = `
-                <img src="${plr.photo}" alt="${plr.name}" class=" rounded-lg">
-                <h3 class="text-xl font-semibold">${plr.name}</h3>
-                <p class="text-sm text-gray-600">${plr.position}</p>
-                <p class="text-sm text-gray-600">${plr.club}</p>
-                <p class="font-bold text-lg">${plr.rating}</p>
-                <div class="flex flex-col">
-                    <div class="flex flex-row justify-between">
-                        <div class="flex flex-col">
-                            <span>PAC</span>
-                            <span>${plr.diving}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>SHO</span>
-                            <span>${plr.handling}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>PAS</span>
-                            <span>${plr.kicking}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>DRI</span>
-                            <span>${plr.speed}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>DEF</span>
-                            <span>${plr.positioning}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>PHY</span>
-                            <span>${plr.reflexes}</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-2 justify-center items-center mt-2">
-                        <img src="${plr.flag}" class="w-10 h-7" alt="Flag of ${plr.nationality}">
-                        <img src="${plr.logo}" class="w-10 h-10" alt="${plr.flag}">
-                    </div>
-                </div>
-                <div class="flex space-x-2 justify-center mt-4">
-                    <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" onclick="addPlayer(${index})">
-                        ajouter au terrain
-                    </button>              
-                </div>
-            `;
-        }
-        else {
-            box.innerHTML = `
-                <img src="${plr.photo}" alt="${plr.name}" class=" rounded-lg">
-                <h3 class="text-xl font-semibold">${plr.name}</h3>
-                <p class="text-sm text-gray-600">${plr.position}</p>
-                <p class="text-sm text-gray-600">${plr.club}</p>
-                <p class="font-bold text-lg">${plr.rating}</p>
-                <div class="flex flex-col">
-                    <div class="flex flex-row justify-between">
-                        <div class="flex flex-col">
-                            <span>PAC</span>
-                            <span>${plr.pace}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>SHO</span>
-                            <span>${plr.shooting}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>PAS</span>
-                            <span>${plr.passing}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>DRI</span>
-                            <span>${plr.dribbling}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>DEF</span>
-                            <span>${plr.defending}</span>
-                        </div>
-                        <div class="flex flex-col">
-                            <span>PHY</span>
-                            <span>${plr.physical}</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-row gap-2 justify-center items-center mt-2">
-                        <img src="${plr.flag}" class="w-10 h-7" alt="Flag of ${plr.nationality}">
-                        <img src="https://via.placeholder.com/50" class="w-10 h-10" alt="${plr.club}">
-                    </div>
-                </div>
-                   <div class="flex space-x-2 justify-center mt-4">
-                    <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600" onclick="addPlayer(${index})">
-                        ajouter au terrain
-                    </button>              
-                </div>
-            `;
 
-        }
-
-        partie.appendChild(box);
-        
+// fonction qui faire l affichage de tout les joueurs 
+ 
+function crationCarte(joueur) {
+    let carte = document.createElement('div');
+    const  placedafichage = document.getElementById('placeAfichageToutLesJoueurs');
+   if(joueur.position != "GK")
+    carte.innerHTML =`
        
-    });
-  
-        console.log(position);
-   
+    
+    <div class=" bg-white p-4 rounded-lg shadow text-center space-y-2">
+    <img src="${joueur.photo}" alt="" class="w-full rounded-lg">
+    <h3 class="text-xl font-semibold">${joueur.name}</h3>
+    <p class="text-sm text-gray-600">${joueur.position}</p>
+    <p class="text-sm text-gray-600">${joueur.club}</p>
+    <p class="font-bold text-lg">${joueur.rating}</p>
+    <div class="flex flex-col">
+        <div class="flex flex-row justify-between">
+<div class="flex flex-col">
+    <span>PAC</span>
+    <span>${joueur.pace}</span>
+</div>
+<div class="flex flex-col">
+    <span>SHO</span>
+    <span>${joueur.shooting}</span>
+</div>
+<div class="flex flex-col">
+    <span>PAS</span>
+    <span>${joueur.passing}</span>
+</div>
+<div class="flex flex-col">
+    <span>DRI</span>
+    <span>${joueur.dribbling}</span>
+</div>
+<div class="flex flex-col">
+    <span>DEF</span>
+    <span>${joueur.defending}</span>
+</div>
+<div class="flex flex-col">
+    <span>PHY</span>
+    <span>${joueur.physical}</span>
+</div>
 
 
-    if (playersposition.length === 0) {
-        let message = document.createElement('p');
-        message.classList = "text-center text-gray-600";
-        message.innerText = "Aucun joueur disponible pour cette position.";
-        partie.appendChild(message);
-    }
+        </div>
+        <div class="flex flex-row gap-2 justify-center items-center">
+            <img src="${joueur.flag}" class="w-10 h-7" alt="">
+            <img src="${joueur.logo}" class="w-10 h-10" alt="">
+        
+    </div>
+    </div>
+    <div class="flex space-x-2 justify-center">
+        <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600")">
+            Modifier
+        </button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" )">
+            Supprimer
+        </button>
+    </div>
+</div> 
+
+`
+else{
+    carte.innerHTML =`
+       
+    
+    <div class=" bg-white p-4 rounded-lg shadow text-center space-y-2">
+    <img src="${joueur.photo}" alt="" class="w-full rounded-lg">
+    <h3 class="text-xl font-semibold">${joueur.name}</h3>
+    <p class="text-sm text-gray-600">${joueur.position}</p>
+    <p class="text-sm text-gray-600">${joueur.club}</p>
+    <p class="font-bold text-lg">${joueur.rating}</p>
+    <div class="flex flex-col">
+        <div class="flex flex-row justify-between">
+<div class="flex flex-col">
+    <span>PAC</span>
+    <span>${joueur.diving}</span>
+</div>
+<div class="flex flex-col">
+    <span>SHO</span>
+    <span>${joueur.handling}</span>
+</div>
+<div class="flex flex-col">
+    <span>PAS</span>
+    <span>${joueur.kicking}</span>
+</div>
+<div class="flex flex-col">
+    <span>DRI</span>
+    <span>${joueur.reflexes}</span>
+</div>
+<div class="flex flex-col">
+    <span>DEF</span>
+    <span>${joueur.speed}</span>
+</div>
+<div class="flex flex-col">
+    <span>PHY</span>
+    <span>${joueur.positioning}</span>
+</div>
 
 
+        </div>
+        <div class="flex flex-row gap-2 justify-center items-center">
+            <img src="${joueur.flag}" class="w-10 h-7" alt="">
+            <img src="${joueur.logo}" class="w-10 h-10" alt="">
+        
+    </div>
+    </div>
+    <div class="flex space-x-2 justify-center">
+        <button class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600")">
+            Modifier
+        </button>
+        <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600" )">
+            Supprimer
+        </button>
+    </div>
+</div> 
+
+`
 }
-function remplacer(){
 
+    console.log(carte);
+placedafichage.appendChild(carte);
+    
 }
 
-function hello(position) {
-    position.classList.remove('hidden');
+// fonction qui retourne tout les joueurs
+function affichageToutLesJoueurs(){
+players.forEach((joueur) => crationCarte(joueur));
 }
-function outmove(position) {
-    position.classList.add('hidden');
-}
+
+//fonction qui ajoute un joueur
+
