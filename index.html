@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="flex flex-row justify-around">
-          <div id="CML" class=" flex justify-center items-center flex-col gap-3">
+          <div onclick=" affichageFormulaireChoisir(CML,CM)" id="CML" class=" flex justify-center items-center flex-col gap-3">
 
             <button  class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center ">
               <img
@@ -104,7 +104,7 @@
                 class="font-Mont text-stone-200">LB</span></div>
           </div>
         </div>
-        <div  id="GK"  class=" flex justify-center items-center flex-col gap-3 ">
+        <div  id="GK" onclick=" affichageFormulaireChoisir(GK,GK)"  class=" flex justify-center items-center flex-col gap-3 ">
 
           <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
               src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -136,6 +136,8 @@
               </select>
               <input type="text" id="nationality" placeholder="Nationalité" class="border p-2 rounded w-full" />
               <input type="text" id="club" placeholder="Club" class="border p-2 rounded w-full" />
+              <input type="url" id="flag" placeholder="flag" class="border p-2 rounded w-full" />
+              <input type="url" id="logo" placeholder="logo" class="border p-2 rounded w-full" />
               <input type="number" id="rating" placeholder="Note" class="border p-2 rounded w-full" />
               <input type="number" id="pace" placeholder="Vitesse" class="border p-2 rounded w-full" />
               <input type="number" id="shooting" placeholder="Tir" class="border p-2 rounded w-full" />
@@ -148,6 +150,7 @@
             <button id="addJoueur" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
               Ajouter un Joueur
             </button>
+            <div class="text-red-700" id="errorMessages"></div>
           </div>
 
 
@@ -157,11 +160,13 @@
        
 
         </div>
-        <div class=" h-fit   bg-black space-x-6 absolute top-[50%] left-[50] flex flex-row  " id="pageChoisirLeJoueurs">
+        <div class=" h-fit   bg-black space-x-6 absolute top-[50%] left-[50] flex flex-row  " id="FormulaireDeChoisirUNJoueur">
 
 
         </div>
-
+        <div id="formulairePourChoisir" class="text-white">
+          
+        </div>
 </body>
 <script src="/script.js"></script>
 
