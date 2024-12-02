@@ -299,7 +299,7 @@ let players = [
 function crationCarte(joueur) {
     let carte = document.createElement('div');
     const placedafichage = document.getElementById('placeAfichageToutLesJoueurs');
-    if (joueur.position != "GK")
+    if (joueur.position != "GK") {
         carte.innerHTML = `
        
     
@@ -345,7 +345,7 @@ function crationCarte(joueur) {
     </div>
     </div>
     <div class="flex space-x-2 justify-center">
-        <button class="bg-black text-white px-4 py-2 rounded hover:bg-yellow-600")">
+        <button id="modifierJoueur${joueur.name}" onclick ="Modifier('${joueur.name}')" class="bg-black text-white px-4 py-2 rounded hover:bg-yellow-600")">
             Modifier
         </button>
  <button onclick="del('${joueur.name}')" class="bg-black text-white px-4 py-2 rounded hover:bg-red-600">
@@ -354,12 +354,12 @@ function crationCarte(joueur) {
 
     </div>
 </div> 
-
+ 
 `
+    }
+
     else {
         carte.innerHTML = `
-       
-    
     <div class=" bg-white p-4 rounded-lg shadow text-center space-y-2">
     <img src="${joueur.photo}" alt="" class="w-full rounded-lg">
     <h3 class="text-xl font-semibold">${joueur.name}</h3>
@@ -402,7 +402,7 @@ function crationCarte(joueur) {
     </div>
     </div>
     <div class="flex space-x-2 justify-center">
-        <button class="bg-black text-white px-4 py-2 rounded hover:bg-orange-600")">
+        <button id="modifier${joueur.name}" onclick ="Modifier('${joueur.name}')"  class="bg-black text-white px-4 py-2 rounded hover:bg-orange-600")">
             Modifier
         </button>
         <button onclick="del('${joueur.name}')" class="bg-black text-white px-4 py-2 rounded hover:bg-red-600">
@@ -411,15 +411,12 @@ function crationCarte(joueur) {
 
     </div>
 </div> 
-
 `
     }
 
     placedafichage.appendChild(carte);
 
 }
-
-
 
 // fonction qui retourne tout les joueurs (fonction principal)
 function affichageToutLesJoueurs() {
@@ -547,7 +544,6 @@ function AjouteUnJoueur(event) {
 
 
 
-
 // Fonction pour afficher un message d erreur (fonction secondaire)
 function showErrorMessage(message) {
     const errorContainer = document.getElementById("errorMessages");
@@ -592,8 +588,6 @@ function clearInputs() {
     document.getElementById("defending").value = "";
     document.getElementById("physical").value = "";
 }
-
-
 
 
 document.getElementById('addJoueur').addEventListener('click', AjouteUnJoueur);
@@ -798,10 +792,129 @@ let JoueursTerrain = [
     }
 ];
 
-let target;
+function Modifier(joueurnamemod) {
+    console.log(joueurnamemod);
+    const mod = players.find(player => player.name === joueurnamemod);
+    const placeFormulairedemodification = document.getElementById('formulairedemodification');
+    let formulairemodifier = document.createElement('div');
+    formulairemodifier.className = 'absolute  z-10 top-0 left-0 w-full h-screen bg-black/50 flex items-center justify-center';
+    formulairemodifier.innerHTML = `<div class="container mx-auto bg-white p-6 rounded-lg shadow-lg max-w-3xl">
+            <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Modifier: ${mod.name}</h1>
+    
+            <form id="playerForm" class="space-y-6">
+                <!-- Personal Information -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="name" class="block text-sm font-semibold text-gray-700">Nom</label>
+                        <input type="text" id="${mod.name}" value = "${mod.name}" placeholder="${mod.name}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="position" class="block text-sm font-semibold text-gray-700">Position</label>
+                        <select id="position" 
+                            class="border border-gray-300 p-2 rounded w-full">
+                            <option value="GK" ${mod.position === "GK" ? "selected" : ""}>GK</option>
+                            <option value="CB" ${mod.position === "CB" ? "selected" : ""}>CB</option>
+                            <option value="RB" ${mod.position === "RB" ? "selected" : ""}>RB</option>
+                            <option value="LB" ${mod.position === "LB" ? "selected" : ""}>LB</option>
+                            <option value="CM" ${mod.position === "CM" ? "selected" : ""}>CM</option>
+                            <option value="ST" ${mod.position === "ST" ? "selected" : ""}>ST</option>
+                            <option value="RW" ${mod.position === "RW" ? "selected" : ""}>RW</option>
+                            <option value="LW" ${mod.position === "LW" ? "selected" : ""}>LW</option>
+                        </select>
+                    </div>
+                </div>
+    
+                <!-- Club Information -->
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label for="nationality" class="block text-sm font-semibold text-gray-700">Nationalité</label>
+                        <input type="text" id="${mod.nationality}" value="${mod.nationality}" placeholder="${mod.nationality}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="club" class="block text-sm font-semibold text-gray-700">Club</label>
+                        <input type="text" id="${mod.club}" value="${mod.club}"  placeholder="${mod.club}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="flag" class="block text-sm font-semibold text-gray-700">Drapeau (URL)</label>
+                        <input type="url" id="${mod.flag}" value="${mod.flag}" placeholder="${mod.flag}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="logo" class="block text-sm font-semibold text-gray-700">Logo (URL)</label>
+                        <input type="url" id="${mod.logo}" value="${mod.logo}" placeholder="${mod.logo}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="photo" class="block text-sm font-semibold text-gray-700">Photo (URL)</label>
+                        <input type="url" id="${mod.photo}" value="${mod.photo}" placeholder="${mod.photo}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                </div>
+    
+                <!-- Player Stats -->
+                <div class="grid grid-cols-3 gap-4">
+                    <div>
+                        <label for="rating" class="block text-sm font-semibold text-gray-700">Note</label>
+                        <input type="number" id="${mod.rating}" value="${mod.rating}" placeholder="${mod.rating}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="pace" class="block text-sm font-semibold text-gray-700">PAC</label>
+                        <input type="number" id="${mod.pace}" value="${mod.pace}" placeholder="${mod.pace}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="shooting" class="block text-sm font-semibold text-gray-700">SHO</label>
+                        <input type="number" id="${mod.shooting}" value="${mod.shooting}" placeholder="${mod.shooting}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="passing" class="block text-sm font-semibold text-gray-700">PAS</label>
+                        <input type="number" id="${mod.passing}" value=${mod.passing} placeholder="${mod.passing}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="dribbling" class="block text-sm font-semibold text-gray-700">DRI</label>
+                        <input type="number" id="${mod.dribbling}" value="${mod.dribbling}" placeholder="${mod.dribbling}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="defending" class="block text-sm font-semibold text-gray-700">DEF</label>
+                        <input type="number" id="${mod.defending}" value="${mod.defending}" placeholder="${mod.defending}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                    <div>
+                        <label for="physical" class="block text-sm font-semibold text-gray-700">PHY</label>
+                        <input type="number" id="${mod.physical}" value="${mod.physical}" placeholder="${mod.physical}" 
+                            class="border border-gray-300 p-2 rounded w-full" />
+                    </div>
+                </div>
+                <!-- Submit Button -->
+                <button id="modifierJoueur" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:ring focus:ring-green-300 focus:outline-none">
+                    Confirmer
+                </button>
+    <button id="cancel" class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:ring focus:ring-green-300 focus:outline-none">
+                    cancel
+                </button>
+                <!-- Error Messages -->
+                <div class="text-red-700 mt-4" id="errorMessages"></div>
+            </form>
+        </div>`
+        // document.getElementById('modifierJoueur').addEventListener('click', () => modifierconfirmer(mod));
+
+    placeFormulairedemodification.appendChild(formulairemodifier);
+
+}
+
+function modifierconfirmer(){
+
+}
 
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
-function affichageDeformulaireDeChoisir(btnChoisier,event) {
+function affichageDeformulaireDeChoisir(btnChoisier, event) {
     target = event.currentTarget.querySelector('button');
     console.log(target);
     let placeterrain = document.getElementById(btnChoisier);
@@ -835,8 +948,8 @@ function affichageDeformulaireDeChoisir(btnChoisier,event) {
 
 // fonction qui cree le carte dans le formulaire de choisir
 function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
-    if(joueurfiltrer.position != 'GK'){
-    let cartejoueur = `
+    if (joueurfiltrer.position != 'GK') {
+        let cartejoueur = `
       <div class="p-4 rounded-lg shadow text-center text-black space-y-2">
         <img src="${joueurfiltrer.photo}" alt="" class="w-full rounded-lg">
         <h3 class="text-xl font-semibold">${joueurfiltrer.name}</h3>
@@ -881,9 +994,9 @@ function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
 </button>
         </div>
       </div>`;
-      return cartejoueur;
+        return cartejoueur;
     }
-    else{
+    else {
         let cartejoueur = `
       <div class="p-4 rounded-lg shadow text-center text-black space-y-2">
         <img src="${joueurfiltrer.photo}" alt="" class="w-full rounded-lg">
@@ -929,10 +1042,10 @@ function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
 </button>
         </div>
       </div>`;
-      return cartejoueur;
+        return cartejoueur;
     }
-   
-   
+
+
 }
 
 
@@ -959,7 +1072,7 @@ function suprimerLeformulairePourChoisir() {
 //fonction qui remplace le joueur dans le terrain 
 function remplaceDansLeTerrain(namepourjouer) {
     const joueur = findLeJoueur(namepourjouer);
-    remplaceDansLeTableauDeTerrain(joueur.position,joueur);
+    remplaceDansLeTableauDeTerrain(joueur.position, joueur);
     console.log(JoueursTerrain);
     suprimerLeformulairePourChoisir();
 }
@@ -969,7 +1082,7 @@ function remplaceDansLeTerrain(namepourjouer) {
 function findLeJoueur(nameJoueur) {
     const trouve = players.find(player => player.name === nameJoueur);
     console.log("Recherche du joueur :", nameJoueur);
-console.log(trouve);
+    console.log(trouve);
     if (trouve) {
         return trouve;
     } else {
@@ -980,45 +1093,45 @@ console.log(trouve);
 
 
 // fonction qui remplace les joueurs dans le tabeau de joueurs qui va jouer
-function remplaceDansLeTableauDeTerrain(ps,playerInfo) {
-  const set =  JoueursTerrain.find(locat => locat.position === ps  );
-  if(set){
-    set.name = playerInfo.name;
-    set.photo = playerInfo.photo;
-    set.nationality = playerInfo.nationality;
-    set.flag = playerInfo.flag;
-    set.club = playerInfo.club;
-    set.logo = playerInfo.logo;
-    set.rating = playerInfo.rating;
-    set.pace = playerInfo.pace;
-    set.shooting = playerInfo.shooting;
-    set.passing = playerInfo.passing;
-    set.dribbling = playerInfo.dribbling;
-    set.defending = playerInfo.defending;
-    set.physical = playerInfo.physical;
-    createlejoueurdansleTerrain(ps,`btnajouter${ps}`,set);
-  }
+function remplaceDansLeTableauDeTerrain(ps, playerInfo) {
+    const set = JoueursTerrain.find(locat => locat.position === ps);
+    if (set) {
+        set.name = playerInfo.name;
+        set.photo = playerInfo.photo;
+        set.nationality = playerInfo.nationality;
+        set.flag = playerInfo.flag;
+        set.club = playerInfo.club;
+        set.logo = playerInfo.logo;
+        set.rating = playerInfo.rating;
+        set.pace = playerInfo.pace;
+        set.shooting = playerInfo.shooting;
+        set.passing = playerInfo.passing;
+        set.dribbling = playerInfo.dribbling;
+        set.defending = playerInfo.defending;
+        set.physical = playerInfo.physical;
+        createlejoueurdansleTerrain(ps, `btnajouter${ps}`, set);
+    }
 }
 
 
 //fonction qui cree le joueur dans le terrain 
 function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
     let placer = document.getElementById(`${btnChoisierajoute}`);
-    
-   
+
+
     let img = target.querySelector('img');
     if (img) {
         img.remove();
     }
-//     let rept = placer.querySelector('button .bg-white.h-14.w-14.rounded-full.shadow.text-center.space-y-2');
-// if(rept){
-//     rept.remove();
-// }
-    
-    
+    //     let rept = placer.querySelector('button .bg-white.h-14.w-14.rounded-full.shadow.text-center.space-y-2');
+    // if(rept){
+    //     rept.remove();
+    // }
+
+
     let creationdediv = document.createElement('div');
-    
-    if(psenterain !='GK'){
+
+    if (psenterain != 'GK') {
         creationdediv.innerHTML = `
         <div class="bg-white h-14 w-14 rounded-full shadow text-center space-y-2">
             <div>
@@ -1066,7 +1179,7 @@ function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
         </div>
     `;
     }
-    else{
+    else {
         creationdediv.innerHTML = `
         <div class="bg-white h-14 w-14 rounded-full shadow text-center space-y-2">
             <div>
@@ -1113,20 +1226,20 @@ function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
             </div>
         </div>
     `;
-    console.log('hh')
+        console.log('hh')
     }
-   
+
 
     target.innerHTML = '';
-    
+
     target.appendChild(creationdediv);
 
-   
-    window.hello = function(name) {
+
+    window.hello = function (name) {
         document.getElementById('helo' + name).classList.remove('hidden');
     };
 
-    window.outmove = function(name) {
+    window.outmove = function (name) {
         document.getElementById('helo' + name).classList.add('hidden');
     };
 }
@@ -1139,9 +1252,9 @@ function del(delplayer) {
     if (index !== -1) {
         suprimerLaffichageDeToutlesjoueurs();
         players.splice(index, 1);
-        
+
         affichageToutLesJoueurs();
-         
+
     }
 }
 
@@ -1149,9 +1262,9 @@ function del(delplayer) {
 // fonction actualiser l affichage de  formulaire de tout les joueurs exactement suprimer  l affichage de tout les joueurs 
 function suprimerLaffichageDeToutlesjoueurs() {
     const placedafichage = document.getElementById('placeAfichageToutLesJoueurs');
-    const supri = placedafichage.querySelectorAll('div'); 
-    
-    
+    const supri = placedafichage.querySelectorAll('div');
+
+
     supri.forEach(element => {
         element.remove();
     });
