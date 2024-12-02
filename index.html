@@ -28,7 +28,7 @@
       <img src="images/terrain.jpg" class="absolute -z-10 h-[600px] " alt="">
       <div class="flex flex-col justify-center w-full  h-[600px] gap-12">
         <div class="flex flex-row justify-around ">
-          <div id="RW" onclick="affichageDeformulaireDeChoisir('RW')"
+          <div id="RW" onclick="affichageDeformulaireDeChoisir('RW',event)"
             class=" ml-10 flex justify-center items-center flex-col gap-3">
 
             <button id="btnajouterRW" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
@@ -36,7 +36,7 @@
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">RW</span></div>
           </div>
-          <div id="ST" onclick="affichageDeformulaireDeChoisir('ST')"
+          <div id="ST" onclick="affichageDeformulaireDeChoisir('ST',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
             <button id="btnajouterST" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
@@ -44,7 +44,7 @@
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">ST</span></div>
           </div>
-          <div id="LW" onclick="affichageDeformulaireDeChoisir('LW')"
+          <div id="LW" onclick="affichageDeformulaireDeChoisir('LW',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
             <button id="btnajouterLW" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
@@ -54,27 +54,27 @@
           </div>
         </div>
         <div class="flex flex-row justify-around">
-          <div onclick="affichageDeformulaireDeChoisir('CM')" id="CML"
+          <div  onclick="affichageDeformulaireDeChoisir('CM',event)" id="CM"
             class=" flex justify-center items-center flex-col gap-3">
 
-            <button id="btnajouterCML" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center ">
+            <button id="btnajouterCM" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center ">
               <img src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CM</span></div>
           </div>
-          <div id="CMC" onclick="affichageDeformulaireDeChoisir('CM')"
+          <div id="CM" onclick="affichageDeformulaireDeChoisir('CM',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
-            <button id="btnajouterCMC"
+            <button id="btnajouterCM"
               class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CM</span></div>
           </div>
-          <div id="CMR" onclick="affichageDeformulaireDeChoisir('CM')"
+          <div id="CM" onclick="affichageDeformulaireDeChoisir('CM',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
-            <button id="btnajouterCMR"
+            <button id="btnajouterCM"
               class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
@@ -82,42 +82,42 @@
           </div>
         </div>
         <div class="flex flex-row justify-between">
-          <div id="LB" onclick="affichageDeformulaireDeChoisir('LB')"
-            class=" flex justify-center items-center flex-col gap-3">
-
-            <button id="btnajouterLB" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
-                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
-                class="font-Mont text-stone-200">RB</span></div>
-          </div>
-          <div id="CBL" onclick="affichageDeformulaireDeChoisir('CB')"
-            class=" flex justify-center items-center flex-col gap-3">
-
-            <button id="btnajouterCBL"
-              class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
-                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
-                class="font-Mont text-stone-200">CB</span></div>
-          </div>
-          <div id="CBR" onclick="affichageDeformulaireDeChoisir('CB')"
-            class=" flex justify-center items-center flex-col gap-3">
-
-            <button id="btnajouterCBR"
-              class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
-                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
-            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
-                class="font-Mont text-stone-200">CB</span></div>
-          </div>
-          <div id="RB" onclick="affichageDeformulaireDeChoisir('RB')"
+          <div id="RB" onclick="affichageDeformulaireDeChoisir('RB',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
             <button id="btnajouterRB" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
+                class="font-Mont text-stone-200">RB</span></div>
+          </div>
+          <div id="CB" onclick="affichageDeformulaireDeChoisir('CB',event)"
+            class=" flex justify-center items-center flex-col gap-3">
+
+            <button id="btnajouterCB"
+              class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
+                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
+                class="font-Mont text-stone-200">CB</span></div>
+          </div>
+          <div id="CB" onclick="affichageDeformulaireDeChoisir('CB',event)"
+            class=" flex justify-center items-center flex-col gap-3">
+
+            <button id="btnajouterCB"
+              class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
+                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
+                class="font-Mont text-stone-200">CB</span></div>
+          </div>
+          <div id="LB" onclick="affichageDeformulaireDeChoisir('LB',event)"
+            class=" flex justify-center items-center flex-col gap-3">
+
+            <button id="btnajouterLB" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
+                src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
+            <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">LB</span></div>
           </div>
         </div>
-        <div id="GK" onclick="affichageDeformulaireDeChoisir('GK')"
+        <div id="GK" onclick="affichageDeformulaireDeChoisir('GK',event)"
           class=" flex justify-center items-center flex-col gap-3 ">
 
           <button id="btnajouterGK" class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img

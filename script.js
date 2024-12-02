@@ -177,9 +177,9 @@ let players = [
         physical: 88,
     },
     {
-        name: "N'Golo Kanté",
+        name: "NGolo Kante",
         photo: "https://cdn.sofifa.net/players/215/914/25_120.png",
-        position: "CDM",
+        position: "CM",
         nationality: "France",
         flag: "https://cdn.sofifa.net/flags/fr.png",
         club: "Al-Ittihad",
@@ -476,6 +476,10 @@ function AjouteUnJoueur(event) {
     clearErrors();
 
 
+    if (players.find(player => player.name === inputName)) {
+        showErrorMessage("Le joueur existe déjà.");
+        valid = false;
+    }
     if (!nameRegex.test(inputName)) {
         showErrorMessage("Nom invalide. Seuls les caractères alphabétiques, apostrophes et tirets sont autorisés.");
         valid = false;
@@ -681,6 +685,86 @@ let JoueursTerrain = [
         physical: 0
     },
     {
+        position: 'CM',
+        name: '',
+        photo: '',
+        nationality: '',
+        flag: '',
+        club: '',
+        logo: '',
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
+    },
+    {
+        position: 'CM',
+        name: '',
+        photo: '',
+        nationality: '',
+        flag: '',
+        club: '',
+        logo: '',
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
+    },
+    {
+        position: 'CB',
+        name: '',
+        photo: '',
+        nationality: '',
+        flag: '',
+        club: '',
+        logo: '',
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
+    },
+    {
+        position: 'CB',
+        name: '',
+        photo: '',
+        nationality: '',
+        flag: '',
+        club: '',
+        logo: '',
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
+    },
+    {
+        position: 'LB',
+        name: '',
+        photo: '',
+        nationality: '',
+        flag: '',
+        club: '',
+        logo: '',
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
+    },
+    {
         position: 'RB',
         name: '',
         photo: '',
@@ -714,10 +798,12 @@ let JoueursTerrain = [
     }
 ];
 
-
+let target;
 
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
-function affichageDeformulaireDeChoisir(btnChoisier) {
+function affichageDeformulaireDeChoisir(btnChoisier,event) {
+    target = event.currentTarget.querySelector('button');
+    console.log(target);
     let placeterrain = document.getElementById(btnChoisier);
     let placeChoisissir = document.getElementById('formulairePourChoisir');
     placeChoisissir.classList.add('flex');
@@ -749,6 +835,7 @@ function affichageDeformulaireDeChoisir(btnChoisier) {
 
 // fonction qui cree le carte dans le formulaire de choisir
 function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
+    if(joueurfiltrer.position != 'GK'){
     let cartejoueur = `
       <div class="p-4 rounded-lg shadow text-center text-black space-y-2">
         <img src="${joueurfiltrer.photo}" alt="" class="w-full rounded-lg">
@@ -794,12 +881,58 @@ function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
 </button>
         </div>
       </div>`;
-    //    let pourajoute = document.getElementById('ajoute'+joueurfiltrer.name);
-
-    //       pourajoute.addEventListener('click',()=>{
-    //         console.log('hello');
-    //       });
-    return cartejoueur;
+      return cartejoueur;
+    }
+    else{
+        let cartejoueur = `
+      <div class="p-4 rounded-lg shadow text-center text-black space-y-2">
+        <img src="${joueurfiltrer.photo}" alt="" class="w-full rounded-lg">
+        <h3 class="text-xl font-semibold">${joueurfiltrer.name}</h3>
+        <p class="text-sm text-gray-600">${joueurfiltrer.position}</p>
+        <p class="text-sm text-gray-600">${joueurfiltrer.club}</p>
+        <p class="font-bold text-lg">${joueurfiltrer.rating}</p>
+        <div class="flex flex-col">
+          <div class="flex flex-row justify-between gap-2">
+            <div class="flex flex-col">
+              <span>PAC</span>
+              <span>${joueurfiltrer.kicking}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>SHO</span>
+              <span>${joueurfiltrer.diving}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>PAS</span>
+              <span>${joueurfiltrer.positioning}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>DRI</span>
+              <span>${joueurfiltrer.handling}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>DEF</span>
+              <span>${joueurfiltrer.speed}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>PHY</span>
+              <span>${joueurfiltrer.reflexes}</span>
+            </div>
+          </div>
+          <div class="flex flex-row gap-2 justify-center items-center">
+            <img src="${joueurfiltrer.flag}" class="w-10 h-7" alt="flag">
+            <img src="${joueurfiltrer.logo}" class="w-10 h-10" alt="club logo">
+          </div>
+        </div>
+        <div class="flex space-x-2 justify-center">
+          <button onclick="remplaceDansLeTerrain('${joueurfiltrer.name}')" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+    Ajouter un joueur
+</button>
+        </div>
+      </div>`;
+      return cartejoueur;
+    }
+   
+   
 }
 
 
@@ -873,20 +1006,20 @@ function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
     let placer = document.getElementById(`${btnChoisierajoute}`);
     
    
-    let img = placer.querySelector('img');
+    let img = target.querySelector('img');
     if (img) {
         img.remove();
     }
-    let rept = placer.querySelector('button .bg-white.h-14.w-14.rounded-full.shadow.text-center.space-y-2');
-if(rept){
-    rept.remove();
-}
+//     let rept = placer.querySelector('button .bg-white.h-14.w-14.rounded-full.shadow.text-center.space-y-2');
+// if(rept){
+//     rept.remove();
+// }
     
     
     let creationdediv = document.createElement('div');
     
-    
-    creationdediv.innerHTML = `
+    if(psenterain !='GK'){
+        creationdediv.innerHTML = `
         <div class="bg-white h-14 w-14 rounded-full shadow text-center space-y-2">
             <div>
                 <img src="${jr.photo}" alt="${jr.name}" class="w-full rounded-full" 
@@ -932,9 +1065,61 @@ if(rept){
             </div>
         </div>
     `;
-    
+    }
+    else{
+        creationdediv.innerHTML = `
+        <div class="bg-white h-14 w-14 rounded-full shadow text-center space-y-2">
+            <div>
+                <img src="${jr.photo}" alt="${jr.name}" class="w-full rounded-full" 
+                    onmouseover="hello('${jr.name}')" onmouseout="outmove('${jr.name}')">
+            </div>
+            <div id="helo${jr.name}" class="absolute hidden rounded-lg bg-white p-4 shadow text-center space-y-2">
+                <h3 class="text-xl font-semibold">${jr.name}</h3>
+                <p class="text-sm text-gray-600">${jr.position}</p>
+                <p class="text-sm text-gray-600">${jr.club}</p>
+                <p class="font-bold text-lg">${jr.rating}</p>
+                <div class="flex flex-col">
+                    <div class="flex flex-row justify-between gap-2">
+                        <div class="flex flex-col">
+                            <span>PAC</span>
+                            <span>${jr.kicking}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>SHO</span>
+                            <span>${jr.positioning}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PAS</span>
+                            <span>${jr.diving}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DRI</span>
+                            <span>${jr.handling}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DEF</span>
+                            <span>${jr.reflexes}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PHY</span>
+                            <span>${jr.dribbling}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-2 justify-center items-center">
+                        <img src="${jr.flag}" class="w-10 h-7" alt="">
+                        <img src="${jr.logo}" class="w-10 h-10" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    console.log('hh')
+    }
    
-    placer.appendChild(creationdediv);
+
+    target.innerHTML = '';
+    
+    target.appendChild(creationdediv);
 
    
     window.hello = function(name) {
@@ -951,11 +1136,23 @@ if(rept){
 function del(delplayer) {
 
     let index = players.findIndex(player => player.name === delplayer);
-
-    
     if (index !== -1) {
-
+        suprimerLaffichageDeToutlesjoueurs();
         players.splice(index, 1);
-        affichageToutLesJoueurs(); 
+        
+        affichageToutLesJoueurs();
+         
     }
+}
+
+
+// fonction actualiser l affichage de  formulaire de tout les joueurs exactement suprimer  l affichage de tout les joueurs 
+function suprimerLaffichageDeToutlesjoueurs() {
+    const placedafichage = document.getElementById('placeAfichageToutLesJoueurs');
+    const supri = placedafichage.querySelectorAll('div'); 
+    
+    
+    supri.forEach(element => {
+        element.remove();
+    });
 }
