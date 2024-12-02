@@ -427,7 +427,8 @@ function affichageToutLesJoueurs() {
 
 
 //fonction qui ajoute un joueur  (fonction principal)
-function AjouteUnJoueur() {
+function AjouteUnJoueur(event) {
+    event.preventDefault();
     const inputName = document.getElementById('name').value.trim();
     const inputPhoto = document.getElementById('photo').value.trim();
     const inputPosition = document.getElementById('position').value.trim();
@@ -530,11 +531,11 @@ function AjouteUnJoueur() {
 
 
     if (valid) {
+
         players.push(nouveauJoueur);
         clearInputs();
-    
-
         alert("Le joueur a été ajouté avec succès !");
+        affichageToutLesJoueurs();
     }
 }
 
@@ -589,15 +590,15 @@ function clearInputs() {
 
 
 
-document.getElementById('addJoueur').addEventListener('click', AjouteUnJoueur); 
+document.getElementById('addJoueur').addEventListener('click', AjouteUnJoueur);
 affichageToutLesJoueurs();
 
 
 
 
- // dans ce tableau ona les poste des 11 joueurs dans le terrain
+// dans ce tableau ona les poste des 11 joueurs dans le terrain
 let JoueursTerrain = [
-    {
+    RW = {
         position: 'RW',
         name: '',
         photo: '',
@@ -605,15 +606,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    ST = {
         position: 'ST',
         name: '',
         photo: '',
@@ -621,15 +622,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    LW = {
         position: 'LW',
         name: '',
         photo: '',
@@ -637,63 +638,63 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
-        position: 'CML',
+    CML = {
+        position: 'CM',
         name: '',
         photo: '',
         nationality: '',
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
-        position: 'CMC',
+    CMC = {
+        position: 'CM',
         name: '',
         photo: '',
         nationality: '',
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
-        position: 'CMR',
+    CMR = {
+        position: 'CM',
         name: '',
         photo: '',
         nationality: '',
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    RB = {
         position: 'RB',
         name: '',
         photo: '',
@@ -701,15 +702,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    CBR = {
         position: 'CBR',
         name: '',
         photo: '',
@@ -717,15 +718,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    CBL = {
         position: 'CBL',
         name: '',
         photo: '',
@@ -733,15 +734,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    LB = {
         position: 'LB',
         name: '',
         photo: '',
@@ -749,15 +750,15 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
-        pace: 0,        
-        shooting: 0,    
-        passing: 0,     
-        dribbling: 0,   
-        defending: 0,   
-        physical: 0     
+        rating: 0,
+        pace: 0,
+        shooting: 0,
+        passing: 0,
+        dribbling: 0,
+        defending: 0,
+        physical: 0
     },
-    {
+    GK = {
         position: 'GK',
         name: '',
         photo: '',
@@ -765,13 +766,13 @@ let JoueursTerrain = [
         flag: '',
         club: '',
         logo: '',
-        rating: 0,      
+        rating: 0,
         diving: 0,
         handling: 0,
         kicking: 0,
         reflexes: 0,
         speed: 0,
-        positioning: 0,  
+        positioning: 0,
     }
 ];
 
@@ -781,90 +782,128 @@ let JoueursTerrain = [
 function affichageDeformulaireDeChoisir(btnChoisier) {
     let placeterrain = document.getElementById(btnChoisier);
     let placeChoisissir = document.getElementById('formulairePourChoisir');
+    placeChoisissir.classList.add('flex');
 
     let formulaireChoisir = document.createElement('div');
-    formulaireChoisir.classList.add('bg-black', 'border-2', 'border-white', 'w-fit', 'h-fit', 'space-y-2', 'shadow-sm', 'shadow-white', 'text-white');
+    formulaireChoisir.classList.add('bg-white', 'w-fit', 'h-fit', 'space-y-4', 'shadow-sm', 'shadow-white', 'text-white', 'flex', 'flex-row', 'gap-4');
 
-;
+    let filteredPlayerCards = '';
+
+
+    function filtrerLesJoueurs(poste) {
+        let posteOfPlayers = players.filter(player => player.position === poste);
+
+
+        posteOfPlayers.forEach(player => {
+            filteredPlayerCards += carteAvantAjouteDansLeTerrain(player);
+
+        });
+
+        return filteredPlayerCards;
+    }
+
+
     formulaireChoisir.innerHTML = filtrerLesJoueurs(btnChoisier);
-    
+
     placeChoisissir.appendChild(formulaireChoisir);
 }
 
-
-
-// fonction cree la carte de joueur dans le formulaire des joueurs pour ajouter au terrain
+// fonction qui cree le carte dans le formulaire de choisir
 function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
-    
     let cartejoueur = `
-    <div class="p-4 rounded-lg shadow text-center space-y-2">
+      <div class="p-4 rounded-lg shadow text-center text-black space-y-2">
         <img src="${joueurfiltrer.photo}" alt="" class="w-full rounded-lg">
         <h3 class="text-xl font-semibold">${joueurfiltrer.name}</h3>
         <p class="text-sm text-gray-600">${joueurfiltrer.position}</p>
         <p class="text-sm text-gray-600">${joueurfiltrer.club}</p>
         <p class="font-bold text-lg">${joueurfiltrer.rating}</p>
         <div class="flex flex-col">
-            <div class="flex flex-row justify-between">
-                <div class="flex flex-col">
-                    <span>PAC</span>
-                    <span>${joueurfiltrer.pace}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>SHO</span>
-                    <span>${joueurfiltrer.shooting}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>PAS</span>
-                    <span>${joueurfiltrer.passing}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>DRI</span>
-                    <span>${joueurfiltrer.dribbling}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>DEF</span>
-                    <span>${joueurfiltrer.defending}</span>
-                </div>
-                <div class="flex flex-col">
-                    <span>PHY</span>
-                    <span>${joueurfiltrer.physical}</span>
-                </div>
+          <div class="flex flex-row justify-between gap-2">
+            <div class="flex flex-col">
+              <span>PAC</span>
+              <span>${joueurfiltrer.pace}</span>
             </div>
-            <div class="flex flex-row gap-2 justify-center items-center">
-                <img src="${joueurfiltrer.flag}" class="w-10 h-7" alt="flag">
-                <img src="${joueurfiltrer.logo}" class="w-10 h-10" alt="club logo">
+            <div class="flex flex-col">
+              <span>SHO</span>
+              <span>${joueurfiltrer.shooting}</span>
             </div>
+            <div class="flex flex-col">
+              <span>PAS</span>
+              <span>${joueurfiltrer.passing}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>DRI</span>
+              <span>${joueurfiltrer.dribbling}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>DEF</span>
+              <span>${joueurfiltrer.defending}</span>
+            </div>
+            <div class="flex flex-col">
+              <span>PHY</span>
+              <span>${joueurfiltrer.physical}</span>
+            </div>
+          </div>
+          <div class="flex flex-row gap-2 justify-center items-center">
+            <img src="${joueurfiltrer.flag}" class="w-10 h-7" alt="flag">
+            <img src="${joueurfiltrer.logo}" class="w-10 h-10" alt="club logo">
+          </div>
         </div>
         <div class="flex space-x-2 justify-center">
-            <button id = ${joueurfiltrer.name} class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
-                Ajouter un joueur
-            </button>
+          <button onclick="remplaceDansLeTerrain('${joueurfiltrer.name}')" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600">
+    Ajouter un joueur
+</button>
         </div>
-    </div>`;
-    document.getElementById(joueurfiltrer.name).addEventListener('click', ()=>{
-   let add =  JoueursTerrain.find(joueurfiltrer.position);
-if(add){
-    JoueursTerrain.push(joueurfiltrer);
-}
-   
-    })
+      </div>`;
+    //    let pourajoute = document.getElementById('ajoute'+joueurfiltrer.name);
+
+    //       pourajoute.addEventListener('click',()=>{
+    //         console.log('hello');
+    //       });
     return cartejoueur;
 }
 
+// fonction qui fait cancel de formulaire de choisir
+function suprimerLeformulairePourChoisir() {
+    const divs = document.querySelector('.bg-white.w-fit.h-fit.space-y-4.shadow-sm.shadow-white.text-white.flex.flex-row.gap-4');
+    const formulaire = document.getElementById('formulairePourChoisir');
 
 
-//fonction filtrer les joueurs d apres son position 
-function filtrerLesJoueurs(poste) {
-    
-    let posteOfPlayers = players.filter(player => player.position === poste);
+    if (formulaire) {
+        formulaire.classList.remove('flex');
+    } else {
+        console.log("flase");
+    }
 
-    posteOfPlayers.forEach(player => {
-     carteAvantAjouteDansLeTerrain(player); 
-        console.log(player);
-     });
+    if (divs) {
+        divs.remove();
+    } else {
+        alert("Aucun élément avec la classe spécifiée n'a été trouvé.");
+    }
 }
 
 
+//fonction qui remplace le joueur dans le terrain 
+function remplaceDansLeTerrain(namepourjouer) {
+    const joueur = findLeJoueur(namepourjouer);
+    
+    suprimerLeformulairePourChoisir();
+}
 
+// Fonction pour trouver un joueur dans le tableau
+function findLeJoueur(nameJoueur) {
+    const trouve = players.find(player => player.name === nameJoueur);
+    console.log("Recherche du joueur :", nameJoueur);
 
+    if (trouve) {
+
+        return trouve;
+    } else {
+        console.log("Aucun joueur trouvé avec ce nom.");
+        return null;
+    }
+}
+function positionPourRemplacer(ps) {
+    
+}
 

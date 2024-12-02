@@ -6,7 +6,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Card Design</title>
-
+  <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="src/output.css">
   <!-- <style>
@@ -16,7 +16,7 @@
     </style> -->
 </head>
 
-<body class="bg-gray-900 h-fit ">
+<body class="bg-gray-900  w-full ">
 
   <nav class="bg-white m-0 flex flex-row justify-center items-end  gap-2 ">
     <span class="text-5xl font-CF">FC</span>
@@ -28,21 +28,21 @@
       <img src="images/terrain.jpg" class="absolute -z-10 h-[600px] " alt="">
       <div class="flex flex-col justify-center w-full  h-[600px] gap-12">
         <div class="flex flex-row justify-around ">
-          <div id="RW" class=" ml-10 flex justify-center items-center flex-col gap-3">
+          <div id="RW" onclick="affichageDeformulaireDeChoisir('RW')" class=" ml-10 flex justify-center items-center flex-col gap-3">
 
             <button  class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">RW</span></div>
           </div>
-          <div id="ST" class=" flex justify-center items-center flex-col gap-3">
+          <div id="ST" onclick="affichageDeformulaireDeChoisir('ST')" class=" flex justify-center items-center flex-col gap-3">
 
             <button   class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">ST</span></div>
           </div>
-          <div id="LW"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="LW" onclick="affichageDeformulaireDeChoisir('LW')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -51,7 +51,7 @@
           </div>
         </div>
         <div class="flex flex-row justify-around">
-          <div onclick=" affichageFormulaireChoisir(CML,CM)" id="CML" class=" flex justify-center items-center flex-col gap-3">
+          <div onclick="affichageDeformulaireDeChoisir('CM')" id="CML" class=" flex justify-center items-center flex-col gap-3">
 
             <button  class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center ">
               <img
@@ -59,14 +59,14 @@
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CM</span></div>
           </div>
-          <div id="CMC"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="CMC" onclick="affichageDeformulaireDeChoisir('CM')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CM</span></div>
           </div>
-          <div id="CMR"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="CMR" onclick="affichageDeformulaireDeChoisir('CM')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -75,28 +75,28 @@
           </div>
         </div>
         <div class="flex flex-row justify-between">
-          <div id="LB"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="LB" onclick="affichageDeformulaireDeChoisir('LB')" class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">RB</span></div>
           </div>
-          <div id="CBL"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="CBL" onclick="affichageDeformulaireDeChoisir('CB')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CB</span></div>
           </div>
-          <div id="CBR"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="CBR" onclick="affichageDeformulaireDeChoisir('CB')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CB</span></div>
           </div>
-          <div id="RB"  class=" flex justify-center items-center flex-col gap-3">
+          <div id="RB" onclick="affichageDeformulaireDeChoisir('RB')"  class=" flex justify-center items-center flex-col gap-3">
 
             <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -104,7 +104,7 @@
                 class="font-Mont text-stone-200">LB</span></div>
           </div>
         </div>
-        <div  id="GK" onclick=" affichageFormulaireChoisir(GK,GK)"  class=" flex justify-center items-center flex-col gap-3 ">
+        <div  id="GK" onclick="affichageDeformulaireDeChoisir('GK')"  class=" flex justify-center items-center flex-col gap-3 ">
 
           <button class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
               src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -160,13 +160,11 @@
        
 
         </div>
-        <div class=" h-fit   bg-black space-x-6 absolute top-[50%] left-[50] flex flex-row  " id="FormulaireDeChoisirUNJoueur">
-
-
-        </div>
-        <div id="formulairePourChoisir" class="text-white">
-          
-        </div>
+        <div
+  class="hidden container-modal p-6 h-full bg-black/50  w-full space-x-6 absolute z-50   top-0 left-0   justify-center items-center    "
+  id="formulairePourChoisir">
+  <button class="text-white bg-red-400 relative text-xl rounded-2xl px-2" onclick="suprimerLeformulairePourChoisir()">cancel</button>
+</div>   
 </body>
 <script src="/script.js"></script>
 
