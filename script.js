@@ -598,7 +598,7 @@ affichageToutLesJoueurs();
 
 // dans ce tableau ona les poste des 11 joueurs dans le terrain
 let JoueursTerrain = [
-    RW = {
+    {
         position: 'RW',
         name: '',
         photo: '',
@@ -614,7 +614,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    ST = {
+    {
         position: 'ST',
         name: '',
         photo: '',
@@ -630,7 +630,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    LW = {
+    {
         position: 'LW',
         name: '',
         photo: '',
@@ -646,7 +646,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    CML = {
+    {
         position: 'CM',
         name: '',
         photo: '',
@@ -662,7 +662,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    CMC = {
+    {
         position: 'CM',
         name: '',
         photo: '',
@@ -678,23 +678,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    CMR = {
-        position: 'CM',
-        name: '',
-        photo: '',
-        nationality: '',
-        flag: '',
-        club: '',
-        logo: '',
-        rating: 0,
-        pace: 0,
-        shooting: 0,
-        passing: 0,
-        dribbling: 0,
-        defending: 0,
-        physical: 0
-    },
-    RB = {
+    {
         position: 'RB',
         name: '',
         photo: '',
@@ -710,55 +694,7 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
-    CBR = {
-        position: 'CBR',
-        name: '',
-        photo: '',
-        nationality: '',
-        flag: '',
-        club: '',
-        logo: '',
-        rating: 0,
-        pace: 0,
-        shooting: 0,
-        passing: 0,
-        dribbling: 0,
-        defending: 0,
-        physical: 0
-    },
-    CBL = {
-        position: 'CBL',
-        name: '',
-        photo: '',
-        nationality: '',
-        flag: '',
-        club: '',
-        logo: '',
-        rating: 0,
-        pace: 0,
-        shooting: 0,
-        passing: 0,
-        dribbling: 0,
-        defending: 0,
-        physical: 0
-    },
-    LB = {
-        position: 'LB',
-        name: '',
-        photo: '',
-        nationality: '',
-        flag: '',
-        club: '',
-        logo: '',
-        rating: 0,
-        pace: 0,
-        shooting: 0,
-        passing: 0,
-        dribbling: 0,
-        defending: 0,
-        physical: 0
-    },
-    GK = {
+    {
         position: 'GK',
         name: '',
         photo: '',
@@ -772,9 +708,10 @@ let JoueursTerrain = [
         kicking: 0,
         reflexes: 0,
         speed: 0,
-        positioning: 0,
+        positioning: 0
     }
 ];
+
 
 
 
@@ -807,6 +744,7 @@ function affichageDeformulaireDeChoisir(btnChoisier) {
 
     placeChoisissir.appendChild(formulaireChoisir);
 }
+
 
 // fonction qui cree le carte dans le formulaire de choisir
 function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
@@ -863,6 +801,7 @@ function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
     return cartejoueur;
 }
 
+
 // fonction qui fait cancel de formulaire de choisir
 function suprimerLeformulairePourChoisir() {
     const divs = document.querySelector('.bg-white.w-fit.h-fit.space-y-4.shadow-sm.shadow-white.text-white.flex.flex-row.gap-4');
@@ -886,9 +825,11 @@ function suprimerLeformulairePourChoisir() {
 //fonction qui remplace le joueur dans le terrain 
 function remplaceDansLeTerrain(namepourjouer) {
     const joueur = findLeJoueur(namepourjouer);
-    
+    remplaceDansLeTableauDeTerrain(joueur.position,joueur);
+    console.log(JoueursTerrain);
     suprimerLeformulairePourChoisir();
 }
+
 
 // Fonction pour trouver un joueur dans le tableau
 function findLeJoueur(nameJoueur) {
@@ -896,14 +837,112 @@ function findLeJoueur(nameJoueur) {
     console.log("Recherche du joueur :", nameJoueur);
 
     if (trouve) {
-
         return trouve;
     } else {
         console.log("Aucun joueur trouvé avec ce nom.");
         return null;
     }
 }
-function positionPourRemplacer(ps) {
-    
+
+
+// fonction qui remplace les joueurs dans le tabeau de joueurs qui va jouer
+function remplaceDansLeTableauDeTerrain(ps,playerInfo) {
+  const set =  JoueursTerrain.find(locat => locat.position === ps  );
+  if(set){
+    set.name = playerInfo.name;
+    set.photo = playerInfo.photo;
+    set.nationality = playerInfo.nationality;
+    set.flag = playerInfo.flag;
+    set.club = playerInfo.club;
+    set.logo = playerInfo.logo;
+    set.rating = playerInfo.rating;
+    set.pace = playerInfo.pace;
+    set.shooting = playerInfo.shooting;
+    set.passing = playerInfo.passing;
+    set.dribbling = playerInfo.dribbling;
+    set.defending = playerInfo.defending;
+    set.physical = playerInfo.physical;
+    createlejoueurdansleTerrain(ps,`btnajouter${ps}`,set);
+  }
 }
+
+
+//fonction qui cree le joueur dans le terrain 
+function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
+    let placer = document.getElementById(`${btnChoisierajoute}`);
+    
+   
+    let img = placer.querySelector('img');
+    if (img) {
+        img.remove();
+    }
+    let rept = placer.querySelector('button .bg-white.h-14.w-14.rounded-full.shadow.text-center.space-y-2');
+if(rept){
+    rept.remove();
+}
+    
+    
+    let creationdediv = document.createElement('div');
+    
+    
+    creationdediv.innerHTML = `
+        <div class="bg-white h-14 w-14 rounded-full shadow text-center space-y-2">
+            <div>
+                <img src="${jr.photo}" alt="${jr.name}" class="w-full rounded-full" 
+                    onmouseover="hello('${jr.name}')" onmouseout="outmove('${jr.name}')">
+            </div>
+            <div id="helo${jr.name}" class="absolute hidden rounded-lg bg-white p-4 shadow text-center space-y-2">
+                <h3 class="text-xl font-semibold">${jr.name}</h3>
+                <p class="text-sm text-gray-600">${jr.position}</p>
+                <p class="text-sm text-gray-600">${jr.club}</p>
+                <p class="font-bold text-lg">${jr.rating}</p>
+                <div class="flex flex-col">
+                    <div class="flex flex-row justify-between gap-2">
+                        <div class="flex flex-col">
+                            <span>PAC</span>
+                            <span>${jr.pace}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>SHO</span>
+                            <span>${jr.shooting}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PAS</span>
+                            <span>${jr.passing}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DRI</span>
+                            <span>${jr.dribbling}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>DEF</span>
+                            <span>${jr.defending}</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span>PHY</span>
+                            <span>${jr.physical}</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-row gap-2 justify-center items-center">
+                        <img src="${jr.flag}" class="w-10 h-7" alt="">
+                        <img src="${jr.logo}" class="w-10 h-10" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+    
+   
+    placer.appendChild(creationdediv);
+
+   
+    window.hello = function(name) {
+        document.getElementById('helo' + name).classList.remove('hidden');
+    };
+
+    window.outmove = function(name) {
+        document.getElementById('helo' + name).classList.add('hidden');
+    };
+}
+
 
