@@ -348,9 +348,10 @@ function crationCarte(joueur) {
         <button class="bg-black text-white px-4 py-2 rounded hover:bg-yellow-600")">
             Modifier
         </button>
-        <button class="bg-black text-white px-4 py-2 rounded hover:bg-red-600" )">
-            Supprimer
-        </button>
+ <button onclick="del('${joueur.name}')" class="bg-black text-white px-4 py-2 rounded hover:bg-red-600">
+    Supprimer
+</button>
+
     </div>
 </div> 
 
@@ -404,9 +405,10 @@ function crationCarte(joueur) {
         <button class="bg-black text-white px-4 py-2 rounded hover:bg-orange-600")">
             Modifier
         </button>
-        <button class="bg-black text-white px-4 py-2 rounded hover:bg-red-600" )">
-            Supprimer
-        </button>
+        <button onclick="del('${joueur.name}')" class="bg-black text-white px-4 py-2 rounded hover:bg-red-600">
+    Supprimer
+</button>
+
     </div>
 </div> 
 
@@ -714,7 +716,6 @@ let JoueursTerrain = [
 
 
 
-
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
 function affichageDeformulaireDeChoisir(btnChoisier) {
     let placeterrain = document.getElementById(btnChoisier);
@@ -835,7 +836,7 @@ function remplaceDansLeTerrain(namepourjouer) {
 function findLeJoueur(nameJoueur) {
     const trouve = players.find(player => player.name === nameJoueur);
     console.log("Recherche du joueur :", nameJoueur);
-
+console.log(trouve);
     if (trouve) {
         return trouve;
     } else {
@@ -946,3 +947,15 @@ if(rept){
 }
 
 
+// fonction suprimer un joueur
+function del(delplayer) {
+
+    let index = players.findIndex(player => player.name === delplayer);
+
+    
+    if (index !== -1) {
+
+        players.splice(index, 1);
+        affichageToutLesJoueurs(); 
+    }
+}
