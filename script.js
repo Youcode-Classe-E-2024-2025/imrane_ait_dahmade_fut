@@ -792,126 +792,151 @@ let JoueursTerrain = [
     }
 ];
 
+// fonction qui afficher le formulaire de Modifier
 function Modifier(joueurnamemod) {
     console.log(joueurnamemod);
+
     const mod = players.find(player => player.name === joueurnamemod);
     const placeFormulairedemodification = document.getElementById('formulairedemodification');
     let formulairemodifier = document.createElement('div');
-    formulairemodifier.className = 'absolute  z-10 top-0 left-0 w-full h-screen bg-black/50 flex items-center justify-center';
-    formulairemodifier.innerHTML = `<div class="container mx-auto bg-white p-6 rounded-lg shadow-lg max-w-3xl">
+    formulairemodifier.className = 'absolute z-10 top-0 left-0 w-full h-screen bg-black/50 flex items-center justify-center';
+
+    formulairemodifier.innerHTML = `
+        <div class="container mx-auto bg-white p-6 rounded-lg shadow-lg max-w-3xl">
             <h1 class="text-3xl font-bold mb-6 text-center text-gray-800">Modifier: ${mod.name}</h1>
-    
             <form id="playerForm" class="space-y-6">
                 <!-- Personal Information -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="name" class="block text-sm font-semibold text-gray-700">Nom</label>
-                        <input type="text" id="${mod.name}" value = "${mod.name}" placeholder="${mod.name}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="text" id="nameup" value="${mod.name}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="position" class="block text-sm font-semibold text-gray-700">Position</label>
-                        <select id="position" 
-                            class="border border-gray-300 p-2 rounded w-full">
-                            <option value="GK" ${mod.position === "GK" ? "selected" : ""}>GK</option>
-                            <option value="CB" ${mod.position === "CB" ? "selected" : ""}>CB</option>
-                            <option value="RB" ${mod.position === "RB" ? "selected" : ""}>RB</option>
-                            <option value="LB" ${mod.position === "LB" ? "selected" : ""}>LB</option>
-                            <option value="CM" ${mod.position === "CM" ? "selected" : ""}>CM</option>
-                            <option value="ST" ${mod.position === "ST" ? "selected" : ""}>ST</option>
-                            <option value="RW" ${mod.position === "RW" ? "selected" : ""}>RW</option>
-                            <option value="LW" ${mod.position === "LW" ? "selected" : ""}>LW</option>
-                        </select>
+                    <select id="positionup" class="border border-gray-300 p-2 rounded w-full">
+                             <option value="GK" ${mod.position === "GK" ? "selected" : ""}>GK</option>
+                             <option value="CB" ${mod.position === "CB" ? "selected" : ""}>CB</option>
+                             <option value="RB" ${mod.position === "RB" ? "selected" : ""}>RB</option>
+                             <option value="LB" ${mod.position === "LB" ? "selected" : ""}>LB</option>
+                             <option value="CM" ${mod.position === "CM" ? "selected" : ""}>CM</option>
+                             <option value="ST" ${mod.position === "ST" ? "selected" : ""}>ST</option>
+                             <option value="RW" ${mod.position === "RW" ? "selected" : ""}>RW</option>
+                             <option value="LW" ${mod.position === "LW" ? "selected" : ""}>LW</option>
+                    </select>
                     </div>
                 </div>
-    
                 <!-- Club Information -->
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label for="nationality" class="block text-sm font-semibold text-gray-700">Nationalité</label>
-                        <input type="text" id="${mod.nationality}" value="${mod.nationality}" placeholder="${mod.nationality}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="text" id="nationalityup" value="${mod.nationality}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="club" class="block text-sm font-semibold text-gray-700">Club</label>
-                        <input type="text" id="${mod.club}" value="${mod.club}"  placeholder="${mod.club}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="text" id="clubup" value="${mod.club}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="flag" class="block text-sm font-semibold text-gray-700">Drapeau (URL)</label>
-                        <input type="url" id="${mod.flag}" value="${mod.flag}" placeholder="${mod.flag}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="url" id="flagup" value="${mod.flag}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="logo" class="block text-sm font-semibold text-gray-700">Logo (URL)</label>
-                        <input type="url" id="${mod.logo}" value="${mod.logo}" placeholder="${mod.logo}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="url" id="logoup" value="${mod.logo}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="photo" class="block text-sm font-semibold text-gray-700">Photo (URL)</label>
-                        <input type="url" id="${mod.photo}" value="${mod.photo}" placeholder="${mod.photo}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="url" id="photoup" value="${mod.photo}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                 </div>
-    
                 <!-- Player Stats -->
                 <div class="grid grid-cols-3 gap-4">
                     <div>
                         <label for="rating" class="block text-sm font-semibold text-gray-700">Note</label>
-                        <input type="number" id="${mod.rating}" value="${mod.rating}" placeholder="${mod.rating}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="ratingup" value="${mod.rating}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="pace" class="block text-sm font-semibold text-gray-700">PAC</label>
-                        <input type="number" id="${mod.pace}" value="${mod.pace}" placeholder="${mod.pace}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="paceup" value="${mod.pace}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="shooting" class="block text-sm font-semibold text-gray-700">SHO</label>
-                        <input type="number" id="${mod.shooting}" value="${mod.shooting}" placeholder="${mod.shooting}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="shootingup" value="${mod.shooting}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="passing" class="block text-sm font-semibold text-gray-700">PAS</label>
-                        <input type="number" id="${mod.passing}" value=${mod.passing} placeholder="${mod.passing}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="passingup" value="${mod.passing}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="dribbling" class="block text-sm font-semibold text-gray-700">DRI</label>
-                        <input type="number" id="${mod.dribbling}" value="${mod.dribbling}" placeholder="${mod.dribbling}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="dribblingup" value="${mod.dribbling}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="defending" class="block text-sm font-semibold text-gray-700">DEF</label>
-                        <input type="number" id="${mod.defending}" value="${mod.defending}" placeholder="${mod.defending}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="defendingup" value="${mod.defending}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                     <div>
                         <label for="physical" class="block text-sm font-semibold text-gray-700">PHY</label>
-                        <input type="number" id="${mod.physical}" value="${mod.physical}" placeholder="${mod.physical}" 
-                            class="border border-gray-300 p-2 rounded w-full" />
+                        <input type="number" id="physicalup" value="${mod.physical}" class="border border-gray-300 p-2 rounded w-full" />
                     </div>
                 </div>
                 <!-- Submit Button -->
-                <button id="modifierJoueur" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:ring focus:ring-green-300 focus:outline-none">
-                    Confirmer
-                </button>
-    <button id="cancel" class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:ring focus:ring-green-300 focus:outline-none">
-                    cancel
-                </button>
-                <!-- Error Messages -->
-                <div class="text-red-700 mt-4" id="errorMessages"></div>
+                <button type="button" id="modifierJoueur" class="w-full bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">Confirmer</button>
+                <button type="button" id="cancel" class="w-full bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">Annuler</button>
             </form>
-        </div>`
-        // document.getElementById('modifierJoueur').addEventListener('click', () => modifierconfirmer(mod));
+        </div>
+    `;
+
 
     placeFormulairedemodification.appendChild(formulairemodifier);
 
+
+    document.getElementById('modifierJoueur').addEventListener('click', () => {
+        const updatedName = document.getElementById('nameup').value;
+        const updatedPosition = document.getElementById('positionup').value; 
+        const updatedNationality = document.getElementById('nationalityup').value;
+        const updatedClub = document.getElementById('clubup').value;
+        const updatedFlag = document.getElementById('flagup').value;
+        const updatedLogo = document.getElementById('logoup').value;
+        const updatedPhoto = document.getElementById('photoup').value;
+        const updatedRating = parseInt(document.getElementById('ratingup').value, 10);
+        const updatedPace = parseInt(document.getElementById('paceup').value, 10);
+        const updatedShooting = parseInt(document.getElementById('shootingup').value, 10);
+        const updatedPassing = parseInt(document.getElementById('passingup').value, 10);
+        const updatedDribbling = parseInt(document.getElementById('dribblingup').value, 10);
+        const updatedDefending = parseInt(document.getElementById('defendingup').value, 10);
+        const updatedPhysical = parseInt(document.getElementById('physicalup').value, 10);
+console.log(mod.position);
+        mod.name = updatedName;
+        mod.position = updatedPosition;
+        mod.nationality = updatedNationality;
+        mod.club = updatedClub;
+        mod.flag = updatedFlag;
+        mod.logo = updatedLogo;
+        mod.photo = updatedPhoto;
+        mod.rating = updatedRating;
+        mod.pace = updatedPace;
+        mod.shooting = updatedShooting;
+        mod.passing = updatedPassing;
+        mod.dribbling = updatedDribbling;
+        mod.defending = updatedDefending;
+        mod.physical = updatedPhysical;
+
+        console.log("Joueur modifié : ", mod);
+        console.log("Position sélectionnée :", updatedPosition);
+        suprimerLaffichageDeToutlesjoueurs();
+        affichageToutLesJoueurs();
+
+        // Retirer le formulaire après modification
+        formulairemodifier.remove();
+    });
+
+    // Gestionnaire pour annuler
+    document.getElementById('cancel').addEventListener('click', () => {
+        formulairemodifier.remove();
+    });
 }
 
-function modifierconfirmer(){
-
-}
+// fonction conferme le modification de joueurs
 
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
 function affichageDeformulaireDeChoisir(btnChoisier, event) {
