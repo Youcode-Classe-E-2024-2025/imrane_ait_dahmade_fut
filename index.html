@@ -9,6 +9,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"> -->
   <link rel="stylesheet" href="src/output.css">
+  <link rel="stylesheet" href="style.css">
   <!-- <style>
         *{
             border: 1px solid red;
@@ -16,18 +17,19 @@
     </style> -->
 </head>
 
-<body class="bg-gray-900  w-full ">
+<body class="bg-gray-900  w-screen ">
 
-  <nav class="bg-white m-0 flex flex-row justify-center items-end  gap-2 ">
-    <span class="text-5xl font-CF">FC</span>
-    <span class="text-2xl font-Mont  ">FUT Champions Web App Ultimate Team</span>
+  <nav class="bg-white m-0 flex flex-row justify-center items-end w-screen gap-2 ">
+    <span class=" sm:text-5xl font-Mont">FC</span>
+    <span class="sm:text-2xl font-Mont  text-slate-700 ">FUT Champions Web App Ultimate Team</span>
   </nav>
   <!-- dans cette section ona le terain et aussi le page pour ajouter le Joueur -->
-  <div class="flex justify-around m-16">
-    <div class="w-[700px]">
-      <img src="images/terrain.jpg" class="absolute -z-10 h-[600px] " alt="">
-      <div class="flex flex-col justify-center w-full  h-[600px] gap-12">
-        <div class="flex flex-row justify-around ">
+  <div class="flex justify-center m-16">
+    <div class="w-[50%] " id="terrain">
+      <img src="images/terrain.jpg" class="absolute -z-10 lg:w-[686px] sm:w-[450px] lg:h-fit sm:h-[480px]   " alt="">
+      <div class="flex flex-col justify-center w-full  lg:gap-12 sm:gap-8 ">
+
+        <div class="flex flex-row justify-around " id="f31">
           <div id="RW" onclick="affichageDeformulaireDeChoisir('RW',event)"
             class=" ml-10 flex justify-center items-center flex-col gap-3">
 
@@ -53,7 +55,7 @@
                 class="font-Mont text-stone-200">LW</span></div>
           </div>
         </div>
-        <div class="flex flex-row justify-around">
+        <div class="flex flex-row justify-around" id="f32">
           <div  onclick="affichageDeformulaireDeChoisir('CM',event)" id="CM"
             class=" flex justify-center items-center flex-col gap-3">
 
@@ -81,7 +83,7 @@
                 class="font-Mont text-stone-200">CM</span></div>
           </div>
         </div>
-        <div class="flex flex-row justify-between">
+        <div class="flex flex-row justify-between" id="f4">
           <div id="RB" onclick="affichageDeformulaireDeChoisir('RB',event)"
             class=" flex justify-center items-center flex-col gap-3">
 
@@ -99,9 +101,8 @@
             <div class="w-10 h-7 rounded-2xl bg-gray-600 flex justify-center items-center"><span
                 class="font-Mont text-stone-200">CB</span></div>
           </div>
-          <div id="CB" onclick="affichageDeformulaireDeChoisir('CB',event)"
+          <div id="CB"  onclick="affichageDeformulaireDeChoisir('CB',event)"
             class=" flex justify-center items-center flex-col gap-3">
-
             <button id="btnajouterCB"
               class="h-14 w-14 rounded-full bg-green-500 flex justify-center items-center "><img
                 src="/icons/add_24dp_FFFFFF_FILL0_wght400_GRAD0_opsz24.png" alt=""></button>
@@ -117,6 +118,7 @@
                 class="font-Mont text-stone-200">LB</span></div>
           </div>
         </div>
+
         <div id="GK" onclick="affichageDeformulaireDeChoisir('GK',event)"
           class=" flex justify-center items-center flex-col gap-3 ">
 
@@ -129,11 +131,13 @@
 
       </div>
     </div>
-    <div class="flex justify-center  w-1/4 h-[500px] bg-white m-16 rounded-xl">
+    </div>
+    <div class=" w-full flex justify-around items-center flex-col   
+     rounded-xl ">
 
-      <div class="form-container">
-        <div class="container mx-auto py-8">
-          <h1 class="text-3xl font-bold mb-6 text-center">Gestion des Joueurs</h1>
+      <div class="form-container w-full">
+        <div class="container mx-auto py-8 ">
+          <h1 class="text-3xl font-bold mb-6 text-center text-white">Gestion des Joueurs</h1>
 
           <div class="bg-white p-6 rounded-lg shadow-lg mb-8">
             <div class="grid grid-cols-2 gap-4">
@@ -169,10 +173,12 @@
 
 
         </div>
+      </div>
         <div id="placeAfichageToutLesJoueurs"
-          class="flex bg-white flex-row flex-wrapF gap-2 w-fit absolute left-0 flex-wrap space-y-7 m-96 ">
+          class="w-[70%] flex bg-white justify-around    flex-wrap p-0  ">
 
 
+        </div>
         </div>
         <div
           class="hidden container-modal p-6 h-full bg-black/50  w-full space-x-6 absolute z-50   top-0 left-0   justify-center items-center    "

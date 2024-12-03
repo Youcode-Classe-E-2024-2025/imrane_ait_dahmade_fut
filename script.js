@@ -299,11 +299,12 @@ let players = [
 function crationCarte(joueur) {
     let carte = document.createElement('div');
     const placedafichage = document.getElementById('placeAfichageToutLesJoueurs');
+    carte.className = ' m-2 ';
     if (joueur.position != "GK") {
         carte.innerHTML = `
        
     
-    <div class=" bg-white p-4 rounded-lg shadow text-center space-y-2 m-4">
+    <div class=" bg-white  rounded-lg shadow text-center ">
     <img src="${joueur.photo}" alt="" class="w-full rounded-lg">
     <h3 class="text-xl font-semibold">${joueur.name}</h3>
     <p class="text-sm text-gray-600">${joueur.position}</p>
@@ -359,8 +360,9 @@ function crationCarte(joueur) {
     }
 
     else {
+
         carte.innerHTML = `
-    <div class=" bg-white p-4 rounded-lg shadow text-center space-y-2">
+    <div class=" bg-white  rounded-lg shadow text-center">
     <img src="${joueur.photo}" alt="" class="w-full rounded-lg">
     <h3 class="text-xl font-semibold">${joueur.name}</h3>
     <p class="text-sm text-gray-600">${joueur.position}</p>
@@ -369,27 +371,27 @@ function crationCarte(joueur) {
     <div class="flex flex-col">
         <div class="flex flex-row justify-between">
 <div class="flex flex-col">
-    <span>PAC</span>
+    <span>DI</span>
     <span>${joueur.diving}</span>
 </div>
 <div class="flex flex-col">
-    <span>SHO</span>
+    <span>HA</span>
     <span>${joueur.handling}</span>
 </div>
 <div class="flex flex-col">
-    <span>PAS</span>
+    <span>KI</span>
     <span>${joueur.kicking}</span>
 </div>
 <div class="flex flex-col">
-    <span>DRI</span>
+    <span>RE</span>
     <span>${joueur.reflexes}</span>
 </div>
 <div class="flex flex-col">
-    <span>DEF</span>
+    <span>SP</span>
     <span>${joueur.speed}</span>
 </div>
 <div class="flex flex-col">
-    <span>PHY</span>
+    <span>PO</span>
     <span>${joueur.positioning}</span>
 </div>
 
@@ -646,8 +648,10 @@ let JoueursTerrain = [
         defending: 0,
         physical: 0
     },
+   
     {
         position: 'CM',
+        id:'CM1',
         name: '',
         photo: '',
         nationality: '',
@@ -664,6 +668,7 @@ let JoueursTerrain = [
     },
     {
         position: 'CM',
+        id:'CM2',
         name: '',
         photo: '',
         nationality: '',
@@ -680,22 +685,7 @@ let JoueursTerrain = [
     },
     {
         position: 'CM',
-        name: '',
-        photo: '',
-        nationality: '',
-        flag: '',
-        club: '',
-        logo: '',
-        rating: 0,
-        pace: 0,
-        shooting: 0,
-        passing: 0,
-        dribbling: 0,
-        defending: 0,
-        physical: 0
-    },
-    {
-        position: 'CM',
+        id:'CM3',
         name: '',
         photo: '',
         nationality: '',
@@ -712,6 +702,7 @@ let JoueursTerrain = [
     },
     {
         position: 'CB',
+        id:'CB1',
         name: '',
         photo: '',
         nationality: '',
@@ -728,6 +719,7 @@ let JoueursTerrain = [
     },
     {
         position: 'CB',
+        id:'CB2',
         name: '',
         photo: '',
         nationality: '',
@@ -889,7 +881,7 @@ function Modifier(joueurnamemod) {
 
     placeFormulairedemodification.appendChild(formulairemodifier);
 
-
+// fonction conferme le modification de joueurs
     document.getElementById('modifierJoueur').addEventListener('click', () => {
         const updatedName = document.getElementById('nameup').value;
         const updatedPosition = document.getElementById('positionup').value; 
@@ -926,17 +918,17 @@ console.log(mod.position);
         suprimerLaffichageDeToutlesjoueurs();
         affichageToutLesJoueurs();
 
-        // Retirer le formulaire après modification
+      
         formulairemodifier.remove();
     });
 
-    // Gestionnaire pour annuler
+//  fonction cancel le formulaire de modification
     document.getElementById('cancel').addEventListener('click', () => {
         formulairemodifier.remove();
     });
 }
 
-// fonction conferme le modification de joueurs
+
 
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
 function affichageDeformulaireDeChoisir(btnChoisier, event) {
@@ -1120,7 +1112,9 @@ function findLeJoueur(nameJoueur) {
 // fonction qui remplace les joueurs dans le tabeau de joueurs qui va jouer
 function remplaceDansLeTableauDeTerrain(ps, playerInfo) {
     const set = JoueursTerrain.find(locat => locat.position === ps);
+    
     if (set) {
+        if(set.position != 'GK'){
         set.name = playerInfo.name;
         set.photo = playerInfo.photo;
         set.nationality = playerInfo.nationality;
@@ -1134,7 +1128,23 @@ function remplaceDansLeTableauDeTerrain(ps, playerInfo) {
         set.dribbling = playerInfo.dribbling;
         set.defending = playerInfo.defending;
         set.physical = playerInfo.physical;
-        createlejoueurdansleTerrain(ps, `btnajouter${ps}`, set);
+    }
+    else {
+        set.name = playerInfo.name;
+        set.photo = playerInfo.photo;
+        set.nationality = playerInfo.nationality;
+        set.flag = playerInfo.flag;
+        set.club = playerInfo.club;
+        set.logo = playerInfo.logo;
+        set.diving = playerInfo.diving;
+        set.kicking= playerInfo.kicking;
+        set.speed = playerInfo.speed;
+        set.reflexes = playerInfo.reflexes;
+        set.positioning = playerInfo.positioning;
+        set.handling= playerInfo.handling;
+        set.dribbling = playerInfo.dribbling;
+    }
+        createlejoueurdansleTerrain(ps,`btnajouter${ps}`,set);
     }
 }
 
