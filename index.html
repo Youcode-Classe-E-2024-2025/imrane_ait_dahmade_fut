@@ -132,10 +132,9 @@
       </div>
     </div>
     </div>
-    <div class=" w-full flex justify-around items-center flex-col   
-     rounded-xl ">
+    <div class=" w-full flex justify-around items-center flex-col  rounded-xl ">
 
-      <div class="form-container w-full">
+      <div class="form-container hidden w-1/2 " id="openajoute">
         <div class="container mx-auto py-8 ">
           <h1 class="text-3xl font-bold mb-6 text-center text-white">Gestion des Joueurs</h1>
 
@@ -175,7 +174,7 @@
         </div>
       </div>
         <div id="placeAfichageToutLesJoueurs"
-          class="w-[70%] flex bg-white justify-around    flex-wrap p-0  ">
+          class="hidden w-[70%]  bg-white justify-around    flex-wrap p-0  ">
 
 
         </div>
@@ -189,8 +188,10 @@
         <div id="formulairedemodification">
 
         </div>
-
-
+        <div class="w-screen flex text-white gap-3 text-xl my-4 justify-center ">
+<button class=" bg-green-600 p-4 rounded-xl " id="openajoutebtn">ajouter un joueur</button>
+<button class="bg-blue-600 p-4 rounded-xl" id="openafficherToutlesjoueur">afficher tout les joueur</button>
+</div>
       <script src="script.js"></script>
      
 

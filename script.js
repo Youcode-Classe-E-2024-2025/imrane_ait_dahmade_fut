@@ -292,8 +292,6 @@ let players = [
 ];
 
 
-
-
 // fonction qui faire la creation de carte de joueur (fonction principale)
 
 function crationCarte(joueur) {
@@ -591,11 +589,8 @@ function clearInputs() {
     document.getElementById("physical").value = "";
 }
 
-
 document.getElementById('addJoueur').addEventListener('click', AjouteUnJoueur);
 affichageToutLesJoueurs();
-
-
 
 
 // dans ce tableau ona les poste des 11 joueurs dans le terrain
@@ -1114,6 +1109,12 @@ function remplaceDansLeTableauDeTerrain(ps, playerInfo) {
     const set = JoueursTerrain.find(locat => locat.position === ps);
     
     if (set) {
+ 
+        if (!validerDoublonsDansTerrain(playerInfo, JoueursTerrain)) {
+            return; 
+        }
+   
+    if (set) {
         if(set.position != 'GK'){
         set.name = playerInfo.name;
         set.photo = playerInfo.photo;
@@ -1142,10 +1143,10 @@ function remplaceDansLeTableauDeTerrain(ps, playerInfo) {
         set.reflexes = playerInfo.reflexes;
         set.positioning = playerInfo.positioning;
         set.handling= playerInfo.handling;
-        set.dribbling = playerInfo.dribbling;
+        set.rating = playerInfo.rating;
     }
         createlejoueurdansleTerrain(ps,`btnajouter${ps}`,set);
-    }
+    } }
 }
 
 
@@ -1250,7 +1251,7 @@ function createlejoueurdansleTerrain(psenterain, btnChoisierajoute, jr) {
                         </div>
                         <div class="flex flex-col">
                             <span>PHY</span>
-                            <span>${jr.dribbling}</span>
+                            <span>${jr.speed}</span>
                         </div>
                     </div>
                     <div class="flex flex-row gap-2 justify-center items-center">
@@ -1304,3 +1305,26 @@ function suprimerLaffichageDeToutlesjoueurs() {
         element.remove();
     });
 }
+// fonction open l ajouter 
+document.getElementById('openajoutebtn').addEventListener('click' , () =>{
+    const openajoute = document.getElementById('openajoute');
+    openajoute.classList.toggle('hidden');
+})
+//fonction open l affichage
+document.getElementById('openafficherToutlesjoueur').addEventListener('click' , () =>{
+    const openaffichage = document.getElementById('placeAfichageToutLesJoueurs');
+    openaffichage.classList.toggle('flex');
+})
+// Fonction pour vérifier les doublons dans le terrain
+function validerDoublonsDansTerrain(joueur, terrain) {
+
+    const doublon = terrain.find(joueurSurTerrain => joueurSurTerrain.name === joueur.name);
+
+    if (doublon) {
+        alert(`Le joueur ${joueur.name} est déjà sur le terrain.`);
+        return false; 
+    }
+
+    return true; 
+}
+
