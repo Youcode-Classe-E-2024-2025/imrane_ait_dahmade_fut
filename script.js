@@ -912,8 +912,6 @@ console.log(mod.position);
         console.log("Position sélectionnée :", updatedPosition);
         suprimerLaffichageDeToutlesjoueurs();
         affichageToutLesJoueurs();
-
-      
         formulairemodifier.remove();
     });
 
@@ -922,8 +920,6 @@ console.log(mod.position);
         formulairemodifier.remove();
     });
 }
-
-
 
 // fonction qui afficher formulaire des joueurs pour ajouter au terrain
 function affichageDeformulaireDeChoisir(btnChoisier, event) {
@@ -1059,6 +1055,7 @@ function carteAvantAjouteDansLeTerrain(joueurfiltrer) {
 
 
 }
+
 
 
 // fonction qui fait cancel de formulaire de choisir
@@ -1305,17 +1302,17 @@ function suprimerLaffichageDeToutlesjoueurs() {
         element.remove();
     });
 }
-// fonction open l ajouter 
+// +
 document.getElementById('openajoutebtn').addEventListener('click' , () =>{
     const openajoute = document.getElementById('openajoute');
     openajoute.classList.toggle('hidden');
 })
-//fonction open l affichage
+//+
 document.getElementById('openafficherToutlesjoueur').addEventListener('click' , () =>{
     const openaffichage = document.getElementById('placeAfichageToutLesJoueurs');
     openaffichage.classList.toggle('flex');
 })
-// Fonction pour vérifier les doublons dans le terrain
+// +
 function validerDoublonsDansTerrain(joueur, terrain) {
 
     const doublon = terrain.find(joueurSurTerrain => joueurSurTerrain.name === joueur.name);
@@ -1326,5 +1323,19 @@ function validerDoublonsDansTerrain(joueur, terrain) {
     }
 
     return true; 
+}
+function remplaceDansLeTerrain(namepourjouer) {
+    const joueur = findLeJoueur(namepourjouer);
+ 
+
+    // Remplacer dans le tableau du terrain
+    remplaceDansLeTableauDeTerrain(joueur.position, joueur);
+
+    // Supprimer le joueur de la liste des joueurs disponibles
+    players = players.filter(player => player.name !== namepourjouer);
+
+    // Mettre à jour le formulaire pour ne plus inclure ce joueur
+    suprimerLeformulairePourChoisir();
+
 }
 
