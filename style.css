@@ -254,6 +254,9 @@
     #GK { 
         margin-top:20px;
     }
+    nav{
+        width: 640px;
+    }
 }
 
 @media (max-width:610px){
@@ -382,6 +385,9 @@
     }
     #terrain div {
         width: 100px;
+    }
+    nav{
+        width: 478px;
     }
 }
 
